@@ -1,5 +1,7 @@
 listen: :13000
-jenkins_url: http://jenkins.demo.com
+jenkins_url: http://jenkins.deluyii.com
+jenkins_username: u
+jenkins_password: p
 repository:
   group/project_name:
     branches:

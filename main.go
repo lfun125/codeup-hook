@@ -63,7 +63,10 @@ func main() {
 			echo(w, err)
 			return
 		}
-		repository, ok := Config.Repository[data.Repository.Homepage]
+		name := path.Base(data.Repository.Homepage)
+		category := path.Base(path.Dir(data.Repository.Homepage))
+		keyPath := fmt.Sprintf("%s/%s", category, name)
+		repository, ok := Config.Repository[keyPath]
 		if !ok {
 			w.WriteHeader(http.StatusInternalServerError)
 			echo(w, `Not config this repository`)
