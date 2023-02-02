@@ -85,9 +85,9 @@ func main() {
 			echo(w, `This branch does not need to be released`)
 			return
 		}
-		requestUrl := fmt.Sprintf("%s/job/%s?token=%s", strings.TrimRight(Config.JenkinsUrl, "/"), job, token)
+		requestUrl := fmt.Sprintf("%s/job/%s/build?token=%s", strings.TrimRight(Config.JenkinsUrl, "/"), job, token)
 		fmt.Println(requestUrl)
-		req, err := http.NewRequest(r.Method, requestUrl, bytes.NewReader(requestRaw))
+		req, err := http.NewRequest("GET", requestUrl, bytes.NewReader(requestRaw))
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			echo(w, err)
