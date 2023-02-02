@@ -66,6 +66,7 @@ func main() {
 		name := path.Base(data.Repository.Homepage)
 		category := path.Base(path.Dir(data.Repository.Homepage))
 		keyPath := fmt.Sprintf("%s/%s", category, name)
+		fmt.Println(keyPath)
 		repository, ok := Config.Repository[keyPath]
 		if !ok {
 			w.WriteHeader(http.StatusInternalServerError)
@@ -85,6 +86,7 @@ func main() {
 			return
 		}
 		requestUrl := fmt.Sprintf("%s/job/%s?token=%s", strings.TrimRight(Config.JenkinsUrl, "/"), job, token)
+		fmt.Println(requestUrl)
 		req, err := http.NewRequest(r.Method, requestUrl, bytes.NewReader(requestRaw))
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
